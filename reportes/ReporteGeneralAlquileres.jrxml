@@ -1,0 +1,173 @@
+<!-- Created with Jaspersoft Studio version 7.0.8.final using JasperReports Library version 7.0.8-6f896111  -->
+<jasperReport name="ReporteGeneralAlquileres" language="java" columnCount="1" pageWidth="595" pageHeight="842" columnWidth="515" leftMargin="40" rightMargin="40" topMargin="30" bottomMargin="30" uuid="809e67f0-74ef-4db2-8532-33e0441b8605">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="CasaFacil"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<query language="SQL"><![CDATA[SELECT
+    r.id_renta,
+    c.nombres || ' ' || c.apellidos AS cliente,
+    ca.codigo,
+    r.fecha_inicio,
+    r.fecha_fin,
+    r.precio_mensual_acordado
+FROM inmobiliaria.rentas r
+INNER JOIN inmobiliaria.clientes c
+    ON r.id_cliente = c.id_cliente
+INNER JOIN inmobiliaria.casas ca
+    ON r.id_casa = ca.id_casa
+ORDER BY r.id_renta]]></query>
+	<field name="id_renta" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.name" value="id_renta"/>
+		<property name="com.jaspersoft.studio.field.label" value="id_renta"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="rentas"/>
+	</field>
+	<field name="cliente" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="cliente"/>
+		<property name="com.jaspersoft.studio.field.label" value="cliente"/>
+	</field>
+	<field name="codigo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="codigo"/>
+		<property name="com.jaspersoft.studio.field.label" value="codigo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="casas"/>
+	</field>
+	<field name="fecha_inicio" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="fecha_inicio"/>
+		<property name="com.jaspersoft.studio.field.label" value="fecha_inicio"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="rentas"/>
+	</field>
+	<field name="fecha_fin" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="fecha_fin"/>
+		<property name="com.jaspersoft.studio.field.label" value="fecha_fin"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="rentas"/>
+	</field>
+	<field name="precio_mensual_acordado" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="precio_mensual_acordado"/>
+		<property name="com.jaspersoft.studio.field.label" value="precio_mensual_acordado"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="rentas"/>
+	</field>
+	<variable name="SumaMensualidades" calculation="Sum" class="java.math.BigDecimal">
+		<expression><![CDATA[$F{precio_mensual_acordado}]]></expression>
+	</variable>
+	<background splitType="Stretch"/>
+	<title height="100" splitType="Stretch">
+		<element kind="staticText" uuid="7e01275b-779c-4300-925d-2191f3d2dcf9" x="0" y="10" width="515" height="26" forecolor="#14253B" fontName="Arial" fontSize="20.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<text><![CDATA[CASAFÁCIL]]></text>
+		</element>
+		<element kind="staticText" uuid="d5914de0-f3f5-4b36-963d-083ca75354cc" x="0" y="39" width="515" height="22" forecolor="#20232B" fontName="Arial" fontSize="17.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<text><![CDATA[REPORTE GENERAL DE ALQUILERES]]></text>
+		</element>
+		<element kind="staticText" uuid="0554e314-8c3b-4653-817a-cc4ad7713359" x="0" y="65" width="515" height="20" forecolor="#666666" fontName="Arial" fontSize="13.0" hTextAlign="Center" vTextAlign="Middle">
+			<text><![CDATA[Listado de contratos de renta]]></text>
+		</element>
+		<property name="com.jaspersoft.studio.unit.height" value="px"/>
+	</title>
+	<pageHeader height="45" splitType="Stretch">
+		<element kind="line" uuid="44e508c6-a59b-4334-a111-ce7e3a5597fa" x="0" y="1" width="515" height="1" forecolor="#505866">
+			<pen lineWidth="0.7" lineColor="#505866"/>
+		</element>
+		<element kind="textField" uuid="e5eead43-8501-4821-8b66-ee76d62e21e9" x="6" y="3" width="310" height="25" forecolor="#181818" fontName="Arial" fontSize="12.0" hTextAlign="Left" vTextAlign="Middle">
+			<expression><![CDATA["Fecha: " + new java.text.SimpleDateFormat("dd/MM/yyyy").format(new java.util.Date())]]></expression>
+		</element>
+		<element kind="staticText" uuid="16bc758c-21f6-4ace-b3ab-d145c6571b3f" x="316" y="3" width="193" height="25" forecolor="#181818" fontName="Arial" fontSize="12.0" hTextAlign="Right" vTextAlign="Middle">
+			<text><![CDATA[Moneda: NIO]]></text>
+		</element>
+		<element kind="line" uuid="7e812de0-dec1-4ad1-b301-d593c101e0db" x="0" y="29" width="515" height="1" forecolor="#505866">
+			<pen lineWidth="0.7" lineColor="#505866"/>
+		</element>
+		<property name="com.jaspersoft.studio.unit.height" value="px"/>
+	</pageHeader>
+	<columnHeader height="26" splitType="Stretch">
+		<element kind="staticText" uuid="a901c8c5-54bf-4cf4-875e-fd3f29973868" x="0" y="0" width="64" height="26" forecolor="#FFFFFF" backcolor="#343D4E" mode="Opaque" fontName="Arial" fontSize="11.0" bold="true" hTextAlign="Left" vTextAlign="Middle">
+			<box topPadding="3" leftPadding="6" rightPadding="6">
+				<pen lineWidth="0.5" lineColor="#BFC1C5"/>
+			</box>
+			<text><![CDATA[ID]]></text>
+		</element>
+		<element kind="staticText" uuid="a69b55b7-aab3-437f-aca8-2863375cc3b4" x="64" y="0" width="191" height="26" forecolor="#FFFFFF" backcolor="#343D4E" mode="Opaque" fontName="Arial" fontSize="11.0" bold="true" hTextAlign="Left" vTextAlign="Middle">
+			<box topPadding="3" leftPadding="6" rightPadding="6">
+				<pen lineWidth="0.5" lineColor="#BFC1C5"/>
+			</box>
+			<text><![CDATA[Cliente / Casa]]></text>
+		</element>
+		<element kind="staticText" uuid="5da7fac1-0a42-4323-ad70-77d547e574e8" x="255" y="0" width="156" height="26" forecolor="#FFFFFF" backcolor="#343D4E" mode="Opaque" fontName="Arial" fontSize="11.0" bold="true" hTextAlign="Left" vTextAlign="Middle">
+			<box topPadding="3" leftPadding="6" rightPadding="6">
+				<pen lineWidth="0.5" lineColor="#BFC1C5"/>
+			</box>
+			<text><![CDATA[Inicio / Fin]]></text>
+		</element>
+		<element kind="staticText" uuid="18a13090-0466-403a-b284-62b8eed0cbb0" x="411" y="0" width="104" height="26" forecolor="#FFFFFF" backcolor="#343D4E" mode="Opaque" fontName="Arial" fontSize="11.0" bold="true" hTextAlign="Right" vTextAlign="Middle">
+			<box topPadding="3" leftPadding="6" rightPadding="6">
+				<pen lineWidth="0.5" lineColor="#BFC1C5"/>
+			</box>
+			<text><![CDATA[Mensual]]></text>
+		</element>
+		<property name="com.jaspersoft.studio.unit.height" value="px"/>
+	</columnHeader>
+	<detail>
+		<band height="36" splitType="Stretch">
+			<element kind="textField" uuid="40ed6ef1-4ad5-451f-91a6-2e04b36cf6bd" x="0" y="0" width="64" height="36" forecolor="#181818" fontName="Arial" fontSize="10.5" hTextAlign="Left" vTextAlign="Top">
+				<box topPadding="3" leftPadding="6" rightPadding="6">
+					<pen lineWidth="0.5" lineColor="#BFC1C5"/>
+				</box>
+				<expression><![CDATA[$F{id_renta}]]></expression>
+			</element>
+			<element kind="textField" uuid="249ed89c-4a0c-450a-9d13-b812c0b4c953" x="64" y="0" width="191" height="36" forecolor="#181818" fontName="Arial" fontSize="10.5" hTextAlign="Left" vTextAlign="Top">
+				<box topPadding="3" leftPadding="6" rightPadding="6">
+					<pen lineWidth="0.5" lineColor="#BFC1C5"/>
+				</box>
+				<expression><![CDATA[$F{cliente} + "\n" + $F{codigo}]]></expression>
+			</element>
+			<element kind="textField" uuid="0a2f6e36-50d7-4f24-9da2-77ed4554153d" x="255" y="0" width="156" height="36" forecolor="#181818" fontName="Arial" fontSize="10.5" hTextAlign="Left" vTextAlign="Top">
+				<box topPadding="3" leftPadding="6" rightPadding="6">
+					<pen lineWidth="0.5" lineColor="#BFC1C5"/>
+				</box>
+				<expression><![CDATA[new java.text.SimpleDateFormat("dd/MM/yy").format($F{fecha_inicio}) + " – " + new java.text.SimpleDateFormat("dd/MM/yy").format($F{fecha_fin})]]></expression>
+			</element>
+			<element kind="textField" uuid="cf87d7bc-ffdb-4100-b2ae-42c59d80d1a4" x="411" y="0" width="104" height="36" forecolor="#181818" fontName="Arial" fontSize="10.5" pattern="'C$' #,##0" hTextAlign="Right" vTextAlign="Top">
+				<box topPadding="3" leftPadding="6" rightPadding="6">
+					<pen lineWidth="0.5" lineColor="#BFC1C5"/>
+				</box>
+				<expression><![CDATA[$F{precio_mensual_acordado}]]></expression>
+			</element>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+		</band>
+	</detail>
+	<columnFooter splitType="Stretch">
+		<property name="com.jaspersoft.studio.unit.height" value="px"/>
+	</columnFooter>
+	<pageFooter height="25" splitType="Stretch">
+		<element kind="textField" uuid="e51c3044-4a76-41d7-86a1-505076fe7277" x="0" y="0" width="263" height="20" forecolor="#181818" fontName="Arial" fontSize="10.0" hTextAlign="Right" vTextAlign="Middle">
+			<expression><![CDATA["Página " + $V{PAGE_NUMBER} + " de "]]></expression>
+		</element>
+		<element kind="textField" uuid="41dc4253-afda-4112-af81-4535d23f1ab9" x="263" y="0" width="252" height="20" forecolor="#181818" fontName="Arial" fontSize="10.0" evaluationTime="Report" hTextAlign="Left" vTextAlign="Middle">
+			<expression><![CDATA[$V{PAGE_NUMBER}]]></expression>
+		</element>
+		<property name="com.jaspersoft.studio.unit.height" value="px"/>
+	</pageFooter>
+	<summary height="120" splitType="Stretch">
+		<element kind="line" uuid="1face1bc-8d36-4033-8f5f-975d9f49b27b" x="0" y="14" width="515" height="1" forecolor="#A5A5A5">
+			<pen lineWidth="0.7" lineColor="#A5A5A5"/>
+		</element>
+		<element kind="staticText" uuid="12021545-0b79-4f5b-8bf6-4c00b1ed024b" x="0" y="25" width="515" height="19" forecolor="#181818" fontName="Arial" fontSize="14.0" bold="true" hTextAlign="Left" vTextAlign="Middle">
+			<text><![CDATA[Total de contratos]]></text>
+		</element>
+		<element kind="textField" uuid="11586eb8-f5e0-4d6a-baf2-e8c5650675ed" x="0" y="45" width="515" height="19" forecolor="#181818" fontName="Arial" fontSize="14.0" hTextAlign="Left" vTextAlign="Middle">
+			<expression><![CDATA[$V{REPORT_COUNT}]]></expression>
+		</element>
+		<element kind="staticText" uuid="d7dbb7f6-1276-4874-8e72-2416390811a8" x="0" y="75" width="515" height="19" forecolor="#181818" fontName="Arial" fontSize="14.0" bold="true" hTextAlign="Left" vTextAlign="Middle">
+			<text><![CDATA[Suma de mensualidades]]></text>
+		</element>
+		<element kind="textField" uuid="0230212f-ac39-4e46-b5a1-0d8d2e9bf069" x="0" y="95" width="515" height="20" forecolor="#181818" fontName="Arial" fontSize="15.0" pattern="'C$' #,##0.00" bold="true" hTextAlign="Left" vTextAlign="Middle">
+			<expression><![CDATA[$V{SumaMensualidades}]]></expression>
+		</element>
+		<property name="com.jaspersoft.studio.unit.height" value="px"/>
+	</summary>
+</jasperReport>
